@@ -57,8 +57,8 @@ function triRectOpp(A, hyp, adj) =  (adj==undef) ? ((estAgl(A) && estLg(hyp)) ? 
                                     undef;
 
 // En fournissant deux des trois parametres, on obtient la longueur de l'hypothenuse
-function triRectHyp(A, adj, opp) =  (adj==undef) ? ((estAgl(A) && estLg(opp)) ? opp/sin(A)) :
-                                    (opp==undef) ? ((estAgl(A) && estLg(adj)) ? adj/cos(A)) :
+function triRectHyp(A, adj, opp) =  (adj==undef) ? ((estAgl(A) && estLg(opp)) ? opp/sin(A) : undef) :
+                                    (opp==undef) ? ((estAgl(A) && estLg(adj)) ? adj/cos(A) : undef) :
                                     (A==undef) ? ((estLg(adj) && estLg(opp)) ? sqrt(a*a+b*b) : undef) :
                                     undef;                               
                                 
