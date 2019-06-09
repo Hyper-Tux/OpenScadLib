@@ -1,64 +1,64 @@
-// Adaptation de la formule de Pythagore (H²=A²+B²)
-// --------------------------------------------------
+// Petite fonction permettant de verifier si le parametre 'nb' est une longueur logique
+function estLg(nb) = (nb>0) ? true : false;
+
+// Petite fonction permettant de verifier si le parametre 'nb' est une amplitude d'angle logique
+function estAgl(nb) = (nb!=0) ? true : false;
+
+
+// Adaptation de la formule de Pythagore (H²=A²+b²)
 //
 //      +
 //      |\
-//      | \
-//      |  \ h
-//    B |   \ y
-//      |    \ p
-//      |     \
-//      |      \
-//      +-------+
-//          A
-//
-// En fournissant deux des trois parametres, on obtient le troisieme
-function pythagore(hyp=0, a=0, b=0) =   (hyp==0) ? ((a==0 || b==0) ? -1 : sqrt(a*a+b*b)) :
-                                        (a==0) ? ((hyp==0 || b==0) ? -2 : sqrt(hyp*hyp-b*b)) :
-                                        (b==0) ? ((hyp==0 || a==0) ? -3 : sqrt(hyp*hyp-a*a)) :
-                                        -4;
+//      | \ H
+//    B |  \ Y
+//      |   \ P
+//      |    \
+//      +-----+
+//         A
+// En fournissant deux des parametres, on obtient le troisieme
+function pythagore(hyp, a, b) = (hyp==undef) ? ((estLg(a) && estLg(b)) ? sqrt(a*a+b*b) : undef) :
+                                (a==undef) ? ((estLg(hyp) && estLg(b)) ? sqrt(hyp*hyp-b*b) : undef) :
+                                (b==undef) ? ((estLg(hyp) && estLg(a)) ? sqrt(hyp*hyp-a*a) : undef) :
+                                undef;
 
 // Adaptation des formules de trigonometrie dans un triangle rectangle
-// ---------------------------------------------------------------------
 //
 //      +
-//      | .  H
-//      |   .  y
-//      |     .  P
-//   O  |       .  O
-//   P  |         .  T
-//   P  |           .  H
-//   o  |             .  E
-//   S  |               .  N
-//   E  |                 .  U
-//      |                   .  S
-//      |                     .  E
+//      | . H
+//      |   . Y
+//      |     . P
+//   O  |       . O
+//   P  |         . T
+//   P  |           . H
+//   O  |             . E
+//   S  |               . N
+//   E  |                 . U
+//      |                   . S
+//      |                     . E
 //      +-----------------------+
-//             ADJACENT
+//              ADJACENT
 //
 // En fournissant deux des trois parametres, on obtient l'amplitude de l'angle A
-function triRectA(hyp=0, adj=0, opp=0) =(hyp==0) ? ((adj==0 || opp==0) ? -1 : atan(opp/adj)) :
-                                        (adj==0) ? ((hyp==0 || opp==0) ? -2 : asin(opp/hyp)) :
-                                        (opp==0) ? ((hyp==0 || adj==0) ? -3 : acos(adj/hyp)) :
-                                        -4;
+function triRectA(hyp,adj,opp) =    (hyp==undef) ? ((estLg(adj) && estLg(opp)) ? atan(opp/adj) : undef) :
+                                    (adj==undef) ? ((estLg(hyp) && estLg(opp)) ? asin(opp/hyp) : undef) :
+                                    (opp==undef) ? ((estLg(hyp) && estLg(adj)) ? acos(adj/hyp) : undef) :
+                                    undef;
 
-// En fournissant soit l'amplitude de l'angle A et la longueur de l'hypothenuse 
-// soit l'amplitude de l'angle A et la longueur du cote oppose, on obtient la longueur du cote adjacent
-function triRectAdj(A=0, hyp=0, opp=0) =(opp==0) ? ((A==0 || hyp==0) ? -1 : cos(A)*hyp) :
-                                        (hyp==0) ? ((A==0 || opp==0) ? -2 : opp/tan(A)) :
-                                        -3;
-                                        
-// En fournissant soit l'amplitude de l'angle A et la longueur de l'hypothenuse 
-// soit l'amplitude de l'angle A et la longueur du cote adjacent, on obtient la longueur du cote oppose
-function triRectOpp(A=0, hyp=0, adj=0) =(adj==0) ? ((A==0 || hyp==0) ? -1 : sin(A)*hyp) :
-                                        (hyp==0) ? ((A==0 || adj==0) ? -2 : tan(A)*adj) :
-                                        -3;
+// En fournissant deux des trois parametres, on obtient la longueur du cote adjacent
+function triRectAdj(A, hyp, opp) =  (opp==undef) ? ((estAgl(A) && estLg(hyp)) ? cos(A)*hyp : undef) :
+                                    (hyp==undef) ? ((estAgl(A) && estLg(opp)) ? opp/tan(A) : undef) :
+                                    (A==undef) ? ((estLg(hyp) && estLg(opp)) ? sqrt(hyp*hyp-opp*opp) : undef) :
+                                    undef;
 
-// En fournissant soit l'amplitude de l'angle A et la longueur du cote adjacent 
-// soit l'amplitude de l'angle A et la longueur du cote oppose, on obtient la longueur de l'hypothenuse.
-function triRectHyp(A=0, adj=0, opp=0) =(adj==0) ? ((A==0 || opp==0) ? -1 : opp/sin(A)) :
-                                        (opp==0) ? ((A==0 || adj==0) ? -2 : adj/cos(A)) :
-                                        -3;
+// En fournissant deux des trois parametres, on obtient la longueur du cote oppose
+function triRectOpp(A, hyp, adj) =  (adj==undef) ? ((estAgl(A) && estLg(hyp)) ? sin(A)*hyp : undef) :
+                                    (hyp==undef) ? ((estAgl(A) && estLg(adj)) ? tan(A)*adl : undef) :
+                                    (A==undef) ? ((estLg(hyp) && estLg(adj)) ? sqrt(hyp*hyp-adj*adj) : undef) :
+                                    undef;
 
-
-echo (pythagore(5, 0, 4));
+// En fournissant deux des trois parametres, on obtient la longueur de l'hypothenuse
+function triRectHyp(A, adj, opp) =  (adj==undef) ? ((estAgl(A) && estLg(opp)) ? opp/sin(A)) :
+                                    (opp==undef) ? ((estAgl(A) && estLg(adj)) ? adj/cos(A)) :
+                                    (A==undef) ? ((estLg(adj) && estLg(opp)) ? sqrt(a*a+b*b) : undef) :
+                                    undef;                               
+                                
