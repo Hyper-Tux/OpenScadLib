@@ -86,3 +86,18 @@ echo ("Opp = triRectOpp[hyp, adj] = ", triRectOpp(hyp=hyp, adj=adj));
 echo ("Hyp = triRectHyp[a, opp] = ", triRectHyp(A=a, opp=opp));
 echo ("Hyp = triRectHyp[a, adj] = ", triRectHyp(A=a, adj=adj));
 echo ("Hyp = triRectHyp[adj, opp] = ", triRectHyp(adj=adj, opp=opp));
+
+// Returne le distance entre les points A et B, en 2D ou en 3D
+function distance(a, b) = (a[2]==undef || b[2]==undef) ? sqrt((b[0]-a[0])*(b[0]-a[0])+(b[1]-a[1])*(b[1]-a[1])) :
+                             sqrt((b[0]-a[0])*(b[0]-a[0])+(b[1]-a[1])*(b[1]-a[1])+(b[2]-a[2])*(b[2]-a[2]));
+
+pa = [0,0];
+pb = [3,4];
+
+translate([pa[0], pa[1], 0])
+cube(0.1, center=true);
+
+translate([pb[0], pb[1], 0])
+cube(0.1, center=true);
+
+echo ("Distance entre A et B : ", distance(pa, pb));
