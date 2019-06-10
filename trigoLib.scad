@@ -60,15 +60,16 @@ function triRectOpp(A, hyp, adj) =  (adj==undef) ? ((estAgl(A) && estLg(hyp)) ? 
 function triRectHyp(A, adj, opp) =  (adj==undef) ? ((estAgl(A) && estLg(opp)) ? opp/sin(A) : undef) :
                                     (opp==undef) ? ((estAgl(A) && estLg(adj)) ? adj/cos(A) : undef) :
                                     (A==undef) ? ((estLg(adj) && estLg(opp)) ? sqrt(adj*adj+opp*opp) : undef) :
-                                    undef;                               
-
-a = 36.87;
-b = 53.13;
-c = 90;
+ 
+                                   undef;                               
 
 adj = 4;
 opp = 3;
 hyp = 5;
+
+a = atan(opp/adj); // 36.8°
+b = atan(adj/opp); // 53.1°
+c = 90;
 
 echo ("A = triRectA[hyp,adj] = ", triRectA(hyp=hyp, adj=adj));
 echo ("A = triRectA[hyp,opp] = ", triRectA(hyp=hyp, opp=opp));
