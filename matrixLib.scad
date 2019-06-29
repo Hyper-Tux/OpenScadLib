@@ -8,6 +8,7 @@
 // 
 //  Matrix [5x4] Matrix [3x3]  Matrix [1x5]  Matrix [5x1]
 
+
 // fonction qui vérifie qu'un tableau est bien une matrice
 // NB : Une matrice de dimension (ou d’ordre or de taille) n×p
 // est un tableau de nombres réels (appelés coefficients ou termes)
