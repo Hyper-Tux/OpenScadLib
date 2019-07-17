@@ -37,7 +37,7 @@ function pythagore(hyp, a, b) = (hyp==undef && estLg(a) && estLg(b))
 //   S  |               . N
 //   E  |                 . U
 //      |                   . S
-//      |                     . E
+//      |                      . E
 //      C-----------------------A
 //              ADJACENT
 //
